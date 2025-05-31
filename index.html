@@ -1,0 +1,2122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Master - Learn HTML from Basic to Advanced</title>
+    <style>
+        :root {
+            --primary: #5b21b6;
+            --primary-light: #7c3aed;
+            --secondary: #2dd4bf;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: var(--primary-light);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 2rem;
+            color: var(--gray);
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-light);
+        }
+
+        .btn-secondary {
+            background-color: var(--light);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            margin-left: 1rem;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 1rem;
+        }
+
+        .content-section {
+            margin: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .topics-container {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .topic {
+            margin-bottom: 2rem;
+        }
+
+        .topic-header {
+            background-color: var(--primary-light);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .topic-content {
+            background-color: white;
+            padding: 1.5rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 0 0 4px 4px;
+            display: none;
+        }
+
+        .topic-content.active {
+            display: block;
+        }
+
+        .code-example {
+            background-color: var(--dark);
+            color: white;
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .tag-example {
+            background-color: #f1f5f9;
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+        }
+
+        .attribute-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .attribute-table th, .attribute-table td {
+            padding: 0.8rem;
+            text-align: left;
+            border: 1px solid #e2e8f0;
+        }
+
+        .attribute-table th {
+            background-color: #f1f5f9;
+        }
+
+        .interactive-demo {
+            background-color: #f1f5f9;
+            padding: 1.5rem;
+            border-radius: 4px;
+            margin: 2rem 0;
+        }
+
+        .demo-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .demo-container {
+                flex-direction: row;
+            }
+        }
+
+        .demo-input {
+            flex: 1;
+        }
+
+        .demo-output {
+            flex: 1;
+            background: white;
+            padding: 1rem;
+            border-radius: 4px;
+            min-height: 200px;
+        }
+
+        textarea, input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .color-picker {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .color-option {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .quiz-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .quiz-question {
+            margin-bottom: 2rem;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .options {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .option {
+            padding: 1rem;
+            background-color: #f1f5f9;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .option:hover {
+            background-color: #e2e8f0;
+        }
+
+        .option.correct {
+            background-color: var(--success);
+            color: white;
+        }
+
+        .option.incorrect {
+            background-color: var(--danger);
+            color: white;
+        }
+
+        .feedback {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .feedback.success {
+            background-color: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+            display: block;
+        }
+
+        .feedback.error {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+            display: block;
+        }
+
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .progress-container {
+            width: 100%;
+            background-color: #e2e8f0;
+            border-radius: 4px;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 4px;
+            width: 0;
+            transition: width 0.5s ease;
+        }
+
+        .progress-label {
+            position: absolute;
+            right: 0;
+            top: -25px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .theme-switch {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+
+        .dark-theme {
+            --light: #1e293b;
+            --dark: #f8fafc;
+            --gray: #64748b;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin: 0.5rem 0;
+        }
+
+        .checkbox-container input {
+            width: auto;
+            margin-right: 10px;
+        }
+
+        .search-container {
+            margin: 2rem 0;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .search-results {
+            margin-top: 1rem;
+            background-color: white;
+            border-radius: 4px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .search-results.active {
+            display: block;
+        }
+
+        .search-result-item {
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+            cursor: pointer;
+        }
+
+        .search-result-item:hover {
+            background-color: #f1f5f9;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav>
+        <div class="logo">HTML<span>Master</span></div>
+        <div class="nav-links">
+            <a href="#basics">Basics</a>
+            <a href="#structure">Structure</a>
+            <a href="#elements">Elements</a>
+            <a href="#forms">Forms</a>
+            <a href="#semantic">Semantic</a>
+            <a href="#advanced">Advanced</a>
+            <a href="#quiz">Quiz</a>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <section class="hero">
+        <h1>Master HTML from Basics to Advanced</h1>
+        <p>A comprehensive guide to HTML with interactive examples, animations, and real-world applications.</p>
+        <div>
+            <button class="btn btn-primary" id="get-started">Get Started</button>
+            <button class="btn btn-secondary" id="toggle-dark-mode">Dark Mode</button>
+        </div>
+    </section>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
+        <div class="progress-label">0% Complete</div>
+    </div>
+
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="Search for HTML tags, attributes, or concepts...">
+        <div class="search-results" id="search-results"></div>
+    </div>
+
+    <section class="features">
+        <div class="feature-card">
+            <div class="feature-icon">📚</div>
+            <h3>Comprehensive Learning</h3>
+            <p>Learn all HTML tags and attributes with detailed explanations and examples.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">👨‍💻</div>
+            <h3>Interactive Examples</h3>
+            <p>Try HTML code directly in your browser with our interactive code editor.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🏆</div>
+            <h3>Test Your Knowledge</h3>
+            <p>Reinforce your learning with quizzes and practical exercises.</p>
+        </div>
+    </section>
+
+    <section id="basics" class="content-section">
+        <h2 class="section-title">HTML Basics</h2>
+        <div class="topics-container">
+            <div class="topic">
+                <div class="topic-header" onclick="toggleTopic(this)">
+                    <h3>What is HTML?</h3>
+                    <span>+</span>
+                </div>
+                <div class="topic-content">
+                    <p>HTML (HyperText Markup Language) is the standard markup language for creating web pages. It describes the structure of a web page using elements indicated by tags.</p>
+                    <p>HTML elements tell the browser how to display the content. The elements label pieces of content such as "this is a heading", "this is a paragraph", "this is a link", etc.</p>
+                    <div class="code-example">
+                            <pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;My First HTML Page&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Hello, World!&lt;/h1&gt;
+    &lt;p&gt;This is my first HTML page.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header" onclick="toggleTopic(this)">
+                    <h3>HTML Document Structure</h3>
+                    <span>+</span>
+                </div>
+                <div class="topic-content">
+                    <p>An HTML document has a required structure that includes the following declarations and elements:</p>
+                    <ul>
+                        <li><strong>&lt;!DOCTYPE html&gt;</strong>: Declaration defines that this document is an HTML5 document</li>
+                        <li><strong>&lt;html&gt;</strong>: Root element of an HTML page</li>
+                        <li><strong>&lt;head&gt;</strong>: Contains meta information about the HTML page</li>
+                        <li><strong>&lt;title&gt;</strong>: Specifies a title for the HTML page (shown in the browser's title bar)</li>
+                        <li><strong>&lt;body&gt;</strong>: Contains the visible page content</li>
+                    </ul>
+                    <div class="interactive-demo">
+                        <h4>Try It Yourself</h4>
+                        <div class="demo-container">
+                            <div class="demo-input">
+                                    <textarea id="structure-demo-input" rows="10"><!DOCTYPE html>
+<html>
+  <head>
+    <title>My Page Title</title>
+  </head>
+  <body>
+    <h1>This is a heading</h1>
+    <p>This is a paragraph.</p>
+  </body>
+</html></textarea>
+                                <button class="btn btn-primary" onclick="runDemo('structure-demo-input', 'structure-demo-output')">Run</button>
+                            </div>
+                            <div class="demo-output" id="structure-demo-output">
+                                <h1>This is a heading</h1>
+                                <p>This is a paragraph.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header" onclick="toggleTopic(this)">
+                    <h3>HTML Elements and Tags</h3>
+                    <span>+</span>
+                </div>
+                <div class="topic-content">
+                    <p>HTML elements are represented by tags. HTML tags are element names surrounded by angle brackets:</p>
+                    <p><code>&lt;tagname&gt;content goes here...&lt;/tagname&gt;</code></p>
+                    <p>HTML tags normally come in pairs like <code>&lt;p&gt;</code> and <code>&lt;/p&gt;</code>. The first tag in a pair is the start tag, the second tag is the end tag. The end tag is written like the start tag, but with a forward slash inserted before the tag name.</p>
+                    <div class="tag-example">
+                        <h4>Example:</h4>
+                        <code>&lt;h1&gt;My First Heading&lt;/h1&gt;</code>
+                        <p>Renders as:</p>
+                        <h1>My First Heading</h1>
+                    </div>
+                    <div class="tag-example">
+                        <h4>Example:</h4>
+                        <code>&lt;p&gt;My first paragraph.&lt;/p&gt;</code>
+                        <p>Renders as:</p>
+                        <p>My first paragraph.</p>
+                    </div>
+                    <p>Some HTML elements have no content (like the <code>&lt;br&gt;</code> element). These elements are called empty elements and do not have an end tag.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="structure" class="content-section">
+        <h2 class="section-title">HTML Structure Elements</h2>
+        <div class="topics-container">
+            <div class="topic">
+                <div class="topic-header" onclick="toggleTopic(this)">
+                    <h3>Headings</h3>
+                    <span>+</span>
+                </div>
+                <div class="topic-content">
+                    <p>HTML headings are defined with the <code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code> tags. <code>&lt;h1&gt;</code> defines the most important heading. <code>&lt;h6&gt;</code> defines the least important heading.</p>
+                    <div class="code-example">
+                            <pre>&lt;h1&gt;Heading 1&lt;/h1&gt;
+&lt;h2&gt;Heading 2&lt;/h2&gt;
+&lt;h3&gt;Heading 3&lt;/h3&gt;
+&lt;h4&gt;Heading 4&lt;/h4&gt;
+&lt;h5&gt;Heading 5&lt;/h5&gt;
+&lt;h6&gt;Heading 6&lt;/h6&gt;</pre>
+                    </div>
+                    <div class="tag-example">
+                        <h1>Heading 1</h1>
+                        <h2>Heading 2</h2>
+                        <h3>Heading 3</h3>
+                        <h4>Heading 4</h4>
+                        <h5>Heading 5</h5>
+                        <h6>Heading 6</h6>
+                    </div>
+                    <p>Search engines use the headings to index the structure and content of your web pages. Users often skim a page by its headings. It is important to use headings to show the document structure.</p>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header" onclick="toggleTopic(this)">
+                    <h3>Paragraphs</h3>
+                    <span>+</span>
+                </div>
+                <div class="topic-content">
+                    <p>HTML paragraphs are defined with the <code>&lt;p&gt;</code> tag:</p>
+                    <div class="code-example">
+                            <pre>&lt;p&gt;This is a paragraph.&lt;/p&gt;
+&lt;p&gt;This is another paragraph.&lt;/p&gt;</pre>
+                    </div>
+                    <div class="tag-example">
+                        <p>This is a paragraph.</p>
+                        <p>This is another paragraph.</p>
+                    </div>
+                    <p>The browser automatically adds some white space (a margin) before and after a paragraph. The margins can be modified with CSS.</p>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header" onclick="toggleTopic(this)">
+                    <h3>Links</h3>
+                    <span>+</span>
+                </div>
+                <div class="topic-content">
+                    <p>HTML links are defined with the <code>&lt;a&gt;</code> tag. The link's destination is specified in the <code>href</code> attribute:</p>
+                    <div class="code-example">
+                        <pre>&lt;a href="https://www.example.com"&gt;This is a link&lt;/a&gt;</pre>
+                    </div>
+                    <div class="tag-example">
+                        <a href="https://www.example.com" target="_blank">This is a link</a>
+                    </div>
+                    <p>By default, links will appear as follows in all browsers:</p>
+                    <ul>
+                        <li>An unvisited link is underlined and blue</li>
+                        <li>A visited link is underlined and purple</li>
+                        <li>An active link is underlined and red</li>
+                    </ul>
+                    <p>You can change the default colors by using CSS.</p>
+                    <h4>Link Attributes</h4>
+                    <table class="attribute-table">
+                        <tr>
+                            <th>Attribute</th>
+                            <th>Value</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>href</td>
+                            <td>URL</td>
+                            <td>Specifies the URL of the page the link goes to</td>
+                        </tr>
+                        <tr>
+                            <td>target</td>
+                            <td>_blank<br>_self<br>_parent<br>_top</td>
+                            <td>Specifies where to open the linked document</td>
+                        </tr>
+                        <tr>
+                            <td>rel</td>
+                            <td>nofollow<br>noopener<br>noreferrer</td>
+                            <td>Specifies the relationship between the current and linked document</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header" onclick="toggleTopic(this)">
+                    <h3>Images</h3>
+                    <span>+</span>
+                </div>
+                <div class="topic-content">
+                    <p>HTML images are defined with the <code>&lt;img&gt;</code> tag. The tag is empty, it only contains attributes, and does not have a closing tag.</p>
+                    <p>The <code>src</code> attribute specifies the URL (web address) of the image:</p>
+                    <div class="code-example">
+                        <pre>&lt;img src="img_girl.jpg" alt="Girl in a jacket" width="500" height="600"&gt;</pre>
+                    </div>
+                    <p>The required <code>alt</code> attribute provides an alternate text for an image, if the user for some reason cannot view it (because of slow connection, an error in the src attribute, or if the user uses a screen reader).</p>
+                    <h4>Image Attributes</h4>
+                    <table class="attribute-table">
+                        <tr>
+                            <th>Attribute</th>
+                            <th>Value</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>src</td>
+                            <td>URL</td>
+                            <td>Specifies the path to the image</td>
+                        </tr>
+                        <tr>
+                            <td>alt</td>
+                            <td>text</td>
+                            <td>Specifies an alternate text for the image</td>
+                        </tr>
+                        <tr>
+                            <td>width</td>
+                            <td>pixels</td>
+                            <td>Specifies the width of the image</td>
+                        </tr>
+                        <tr>
+                            <td>height</td>
+                            <td>pixels</td>
+                            <td>Specifies the height of the image</td>
+                        </tr>
+                        <tr>
+                            <td>loading</td>
+                            <td>eager<br>lazy</td>
+                            <td>Specifies whether a browser should load an image immediately or to defer loading</td>
+                        </tr>
+                    </table>
+                    <div class="interactive-demo">
+                        <h4>Try Different Alt Text</h4>
+                        <div class="demo-container">
+                            <div class="demo-input">
+                                <input type="text" id="alt-text-input" placeholder="Enter alt text here" value="HTML Logo">
+                                <button class="btn btn-primary" onclick="updateAltText()">Update Alt Text</button>
+                            </div>
+                            <div class="demo-output">
+                                <img id="alt-demo-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHRpdGxlPmZpbGVfdHlwZV9odG1sPC90aXRsZT48cGF0aCBkPSJNNS45MDIsMi4wNzVsMi40MjcsMjcuMjUxTDE2LDMxLjgyNWw3LjY3MS0yLjVMMjYuMSwyLjA3NVpNMjMuODY3LDEwLjhhLjU4NC41ODQsMCwwLDAtLjAxOC0uMTI3TDIzLjgsMTAuNTA5SDIzLjhsLS4wMDgtLjA2My0uMDM1LS4xODRoLjAyN0wxMC40LDEwLjI0OXYyLjEzM2g3Ljk1bC0uNDA3LDQuNjM5TDE2LDE3Ljk0OWwtLjAyMywwLTEuOTM4LS45MjgtLjEyNC0xLjRoLTEuNzVsLjI0NSwyLjc1MSwzLjU2OCwxLjgxNC4wMi0uMDA2LDMuNTUyLTEuODEuNDY4LTUu
+zODRoOC42MzdMMjAuNzExLDEyLjM4MkgxMC40djIuMDc0SDE4LjZsMC0uMDExLjA0OS0uNTY5LjA5My0xLjAzOVoiIHN0eWxlPSJmaWxsOiNlNDRkMjYiLz48cGF0aCBkPSJNMTYsMTcuOTQ3aC0uMDIzTDE0LjAzOSwxNy4wMmwtLjEyNC0xLjRIMTIuMTY1bC4yNDUsMi43NTEsMy41NjgsMS44MTQuMDItLjAwNlYxNy45NDdaIiBzdHlsZT0iZmlsbDojZjE2NTI5Ii8+PHBhdGggZD0iTTIzLjc3Myw3LjU5OGwtLjAzNS0uMTgzLS4wMjctLjE0LS4wMjUtLjE0SDE2VjkuNTE4aDQuNDUxbC0uMTQyLDEuNjQxSDEwLjR2Mi4wNzRoOS42NTZsLS4wMzEuMDM0LS4xMjUsMS40MTUtLjEyNSwxLjQyOC0yLjA0MywxLjU5Ni4wMzEuMDE0djIuNTcybC0uMDMxLjAwOS0zLjUzNy0xLjgtLjEzNS0xLjUyN0gxMi4xNjVsLjEsMi45NDMsMy43MzUsMS45LDMuNzM2LTEuOTA4LjQ3MS01LjI3NS40OS01LjUwOVoiIHN0eWxlPSJmaWxsOiNmZmYiLz48L3N2Zz4=" alt="HTML Logo" width="100">
+                                <p>Current alt text: <span id="current-alt-text">HTML Logo</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="elements" class="content-section">
+        <h2 class="section-title">HTML Elements Reference</h2>
+        <div class="topics-container">
+            <div class="topic">
+                <div class="topic-header" onclick="toggleTopic(this)">
+                    <h3>Text Formatting Elements</h3>
+                    <span>+</span>
+                </div>
+                <div class="topic-content">
+                    <p>HTML provides several elements for text formatting:</p>
+                    <table class="attribute-table">
+                        <tr>
+                            <th>Tag</th>
+                            <th>Description</th>
+                            <th>Example</th>
+                        </tr>
+                        <tr>
+                            <td>&lt;b&gt;</td>
+                            <td>Defines bold text</td>
+                            <td><b>This text is bold</b></td>
+                        </tr>
+                        <tr>
+                            <td>&lt;strong&gt;</td>
+                            <td>Defines important text (semantically stronger than &lt;b&gt;)</td>
+                            <td><strong>This text is important</strong></td>
+                        </tr>
+                        <tr>
+                            <td>&lt;i&gt;</td>
+                            <td>Defines italic text</td>
+                            <td><i>This text is italic</i></td>
+                        </tr>
+                        <tr>
+                            <td>&lt;em&gt;</td>
+                            <td>Defines emphasized text (semantically stronger than &lt;i&gt;)</td>
+                            <td><em>This text is emphasized</em></td>
+                        </tr>
+                        <tr>
+                            <td>&lt;mark&gt;</td>
+                            <td>Defines marked/highlighted text</td>
+                            <td><mark>This text is marked</mark></td>
+                        </tr>
+                        <tr>
+                            <td>&lt;small&gt;</td>
+                            <td>Defines smaller text</td>
+                            <td><small>This text is smaller</small></td>
+                        </tr>
+                        <tr>
+                            <td>&lt;del&gt;</td>
+                            <td>Defines deleted text</td>
+                            <td><del>This text is deleted</del></td>
+                        </tr>
+                        <tr>
+                            <td>&lt;ins&gt;</td>
+                            <td>Defines inserted text</td>
+                            <td><ins>This text is inserted</ins></td>
+                        </tr>
+                        <tr>
+                            <td>&lt;sub&gt;</td>
+                            <td>Defines subscript text</td>
+                            <td>H<sub>2</sub>O</td>
+                        </tr>
+                        <tr>
+                            <td>&lt;sup&gt;</td>
+                            <td>Defines superscript text</td>
+                            <td>X<sup>2</sup></td>
+                        </tr>
+                    </table>
+                    <div class="interactive-demo">
+                        <h4>Try Text Formatting</h4>
+                        <div class="demo-container">
+                            <div class="demo-input">
+                                    <textarea id="format-demo-input" rows="5">This is <b>bold text</b> and this is <i>italic text</i>.
+This is <mark>highlighted text</mark> and this is <del>deleted text</del>.</textarea>
+                                <button class="btn btn-primary" onclick="runDemo('format-demo-input', 'format-demo-output')">Format Text</button>
+                            </div>
+                            <div class="demo-output" id="format-demo-output">
+                                This is <b>bold text</b> and this is <i>italic text</i>.
+                                This is <mark>highlighted text</mark> and this is <del>deleted text</del>.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header" onclick="toggleTopic(this)">
+                    <h3>Lists</h3>
+                    <span>+</span>
+                </div>
+                <div class="topic-content">
+                    <p>HTML provides three types of lists:</p>
+                    <h4>Unordered Lists</h4>
+                    <p>An unordered list starts with the <code>&lt;ul&gt;</code> tag. Each list item starts with the <code>&lt;li&gt;</code> tag.</p>
+                    <div class="code-example">
+                            <pre>&lt;ul&gt;
+  &lt;li&gt;Coffee&lt;/li&gt;
+  &lt;li&gt;Tea&lt;/li&gt;
+  &lt;li&gt;Milk&lt;/li&gt;
+&lt;/ul&gt;</pre>
+                    </div>
+                    <div class="tag-example">
+                        <ul>
+                            <li>Coffee</li>
+                            <li>Tea</li>
+                            <li>Milk</li>
+                        </ul>
+                    </div>
+
+                    <h4>Ordered Lists</h4>
+                    <p>An ordered list starts with the <code>&lt;ol&gt;</code> tag. Each list item starts with the <code>&lt;li&gt;</code> tag.</p>
+                    <div class="code-example">
+                            <pre>&lt;ol&gt;
+  &lt;li&gt;First item&lt;/li&gt;
+  &lt;li&gt;Second item&lt;/li&gt;
+  &lt;li&gt;Third item&lt;/li&gt;
+&lt;/ol&gt;</pre>
+                    </div>
+                    <div class="tag-example">
+                        <ol>
+                            <li>First item</li>
+                            <li>Second item</li>
+                            <li>Third item</li>
+                        </ol>
+                    </div>
+
+                    <h4>Description Lists</h4>
+                    <p>A description list starts with the <code>&lt;dl&gt;</code> tag. Each description term starts with the <code>&lt;dt&gt;</code> tag. Each description starts with the <code>&lt;dd&gt;</code> tag.</p>
+                    <div class="code-example">
+                            <pre>&lt;dl&gt;
+  &lt;dt&gt;Coffee&lt;/dt&gt;
+  &lt;dd&gt;- Black hot drink&lt;/dd&gt;
+  &lt;dt&gt;Milk&lt;/dt&gt;
+  &lt;dd&gt;- White cold drink&lt;/dd&gt;
+&lt;/dl&gt;</pre>
+                    </div>
+                    <div class="tag-example">
+                        <dl>
+                            <dt>Coffee</dt>
+                            <dd>- Black hot drink</dd>
+                            <dt>Milk</dt>
+                            <dd>- White cold drink</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header" onclick="toggleTopic(this)">
+                    <h3>Tables</h3>
+                    <span>+</span>
+                </div>
+                <div class="topic-content">
+                    <p>HTML tables are defined with the <code>&lt;table&gt;</code> tag. Each table row is defined with the <code>&lt;tr&gt;</code> tag. A table header is defined with the <code>&lt;th&gt;</code> tag. A table cell is defined with the <code>&lt;td&gt;</code> tag.</p>
+                    <div class="code-example">
+                            <pre>&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Company&lt;/th&gt;
+    &lt;th&gt;Contact&lt;/th&gt;
+    &lt;th&gt;Country&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Alfreds Futterkiste&lt;/td&gt;
+    &lt;td&gt;Maria Anders&lt;/td&gt;
+    &lt;td&gt;Germany&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Centro comercial Moctezuma&lt;/td&gt;
+    &lt;td&gt;Francisco Chang&lt;/td&gt;
+    &lt;td&gt;Mexico&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</pre>
+                    </div>
+                    <div class="tag-example">
+                        <table style="border-collapse: collapse; width: 100%;">
+                            <tr>
+                                <th style="border: 1px solid #ddd; padding: 8px;">Company</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">Contact</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">Country</th>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Alfreds Futterkiste</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Maria Anders</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Germany</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Centro comercial Moctezuma</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Francisco Chang</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Mexico</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <h4>Table Elements</h4>
+                    <table class="attribute-table">
+                        <tr>
+                            <th>Tag</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>&lt;table&gt;</td>
+                            <td>Defines a table</td>
+                        </tr>
+                        <tr>
+                            <td>&lt;th&gt;</td>
+                            <td>Defines a header cell in a table</td>
+                        </tr>
+                        <tr>
+                            <td>&lt;tr&gt;</td>
+                            <td>Defines a row in a table</td>
+                        </tr>
+                        <tr>
+                            <td>&lt;td&gt;</td>
+                            <td>Defines a cell in a table</td>
+                        </tr>
+                        <tr>
+                            <td>&lt;caption&gt;</td>
+                            <td>Defines a table caption</td>
+                        </tr>
+                        <tr>
+                            <td>&lt;colgroup&gt;</td>
+                            <td>Specifies a group of one or more columns in a table for formatting</td>
+                        </tr>
+                        <tr>
+                            <td>&lt;col&gt;</td>
+                            <td>Specifies column properties for each column within a &lt;colgroup&gt; element</td>
+                        </tr>
+                        <tr>
+                            <td>&lt;thead&gt;</td>
+                            <td>Groups the header content in a table</td>
+                        </tr>
+                        <tr>
+                            <td>&lt;tbody&gt;</td>
+                            <td>Groups the body content in a table</td>
+                        </tr>
+                        <tr>
+                            <td>&lt;tfoot&gt;</td>
+                            <td>Groups the footer content in a table</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="forms" class="content-section">
+        <h2 class="section-title">HTML Forms</h2>
+        <div class="topics-container">
+            <div class="topic">
+                <div class="topic-header" onclick="toggleTopic(this)">
+                    <h3>Basic Form Structure</h3>
+                    <span>+</span>
+                </div>
+                <div class="topic-content">
+                    <p>HTML forms are used to collect user input. The <code>&lt;form&gt;</code> element defines a form that is used to collect user input:</p>
+                    <div class="code-example">
+                            <pre>&lt;form action="/submit-form" method="post"&gt;
+  &lt;label for="fname"&gt;First name:&lt;/label&gt;
+  &lt;input type="text" id="fname" name="fname"&gt;&lt;br&gt;
+  &lt;label for="lname"&gt;Last name:&lt;/label&gt;
+  &lt;input type="text" id="lname" name="lname"&gt;&lt;br&gt;
+  &lt;input type="submit" value="Submit"&gt;
+&lt;/form&gt;</pre>
+                    </div>
+                    <div class="tag-example">
+                        <form>
+                            <label for="fname">First name:</label><br>
+                            <input type="text" id="fname" name="fname"><br>
+                            <label for="lname">Last name:</label><br>
+                            <input type="text" id="lname" name="lname"><br><br>
+                            <input type="submit" value="Submit">
+                        </form>
+                    </div>
+                    <p>The <code>action</code> attribute defines the action to be performed when the form is submitted. The <code>method</code> attribute specifies the HTTP method to be used when submitting form data (GET or POST).</p>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header" onclick="toggleTopic(this)">
+                    <h3>Form Elements</h3>
+                    <span>+</span>
+                </div>
+                <div class="topic-content">
+                    <p>The HTML <code>&lt;input&gt;</code> element is the most used form element. An <code>&lt;input&gt;</code> element can be displayed in many ways, depending on the <code>type</code> attribute:</p>
+                    <table class="attribute-table">
+                        <tr>
+                            <th>Type</th>
+                            <th>Description</th>
+                            <th>Example</th>
+                        </tr>
+                        <tr>
+                            <td>text</td>
+                            <td>Defines a single-line text input field</td>
+                            <td><input type="text" placeholder="Text input"></td>
+                        </tr>
+                        <tr>
+                            <td>password</td>
+                            <td>Defines a password field</td>
+                            <td><input type="password" placeholder="Password"></td>
+                        </tr>
+                        <tr>
+                            <td>radio</td>
+                            <td>Defines a radio button (for selecting one of many choices)</td>
+                            <td>
+                                <input type="radio" id="html" name="fav_language" value="HTML">
+                                <label for="html">HTML</label><br>
+                                <input type="radio" id="css" name="fav_language" value="CSS">
+                                <label for="css">CSS</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>checkbox</td>
+                            <td>Defines a checkbox (for selecting zero or more of many choices)</td>
+                            <td>
+                                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                                <label for="vehicle1">I have a bike</label><br>
+                                <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+                                <label for="vehicle2">I have a car</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>submit</td>
+                            <td>Defines a submit button</td>
+                            <td><input type="submit" value="Submit"></td>
+                        </tr>
+                        <tr>
+                            <td>button</td>
+                            <td>Defines a clickable button</td>
+                            <td><input type="button" value="Click Me"></td>
+                        </tr>
+                        <tr>
+                            <td>color</td>
+                            <td>Defines a color picker</td>
+                            <td><input type="color"></td>
+                        </tr>
+                        <tr>
+                            <td>date</td>
+                            <td>Defines a date picker</td>
+                            <td><input type="date"></td>
+                        </tr>
+                        <tr>
+                            <td>email</td>
+                            <td>Defines a field for an e-mail address</td>
+                            <td><input type="email" placeholder="Email"></td>
+                        </tr>
+                        <tr>
+                            <td>file</td>
+                            <td>Defines a file-select field and a "Browse" button</td>
+                            <td><input type="file"></td>
+                        </tr>
+                        <tr>
+                            <td>number</td>
+                            <td>Defines a numeric input field</td>
+                            <td><input type="number" placeholder="Number"></td>
+                        </tr>
+                        <tr>
+                            <td>range</td>
+                            <td>Defines a range control (like a slider control)</td>
+                            <td><input type="range"></td>
+                        </tr>
+                    </table>
+                    <h4>Other Form Elements</h4>
+                    <table class="attribute-table">
+                        <tr>
+                            <th>Element</th>
+                            <th>Description</th>
+                            <th>Example</th>
+                        </tr>
+                        <tr>
+                            <td>&lt;select&gt;</td>
+                            <td>Defines a drop-down list</td>
+                            <td>
+                                <select>
+                                    <option value="html">HTML</option>
+                                    <option value="css">CSS</option>
+                                    <option value="javascript">JavaScript</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>&lt;textarea&gt;</td>
+                            <td>Defines a multi-line input field</td>
+                            <td>
+                                <textarea rows="2" cols="20">A multi-line text area.</textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>&lt;button&gt;</td>
+                            <td>Defines a clickable button</td>
+                            <td><button>Click Me</button></td>
+                        </tr>
+                        <tr>
+                            <td>&lt;fieldset&gt;</td>
+                            <td>Groups related elements in a form</td>
+                            <td>
+                                <fieldset style="width: 200px;">
+                                    <legend>Personal Info</legend>
+                                    <label for="fname">First name:</label><br>
+                                    <input type="text" id="fname" name="fname" value="John"><br>
+                                </fieldset>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>&lt;datalist&gt;</td>
+                            <td>Specifies a list of pre-defined options for an input element</td>
+                            <td>
+                                <input list="browsers" name="browser" placeholder="Choose a browser">
+                                <datalist id="browsers">
+                                    <option value="Chrome">
+                                    <option value="Firefox">
+                                    <option value="Safari">
+                                </datalist>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <div class="interactive-demo">
+                        <h4>Try Form Elements</h4>
+                        <div class="demo-container">
+                            <div class="demo-input">
+                                <h5>Form Builder</h5>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" id="include-text" checked>
+                                    <label for="include-text">Text Input</label>
+                                </div>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" id="include-email">
+                                    <label for="include-email">Email Input</label>
+                                </div>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" id="include-password">
+                                    <label for="include-password">Password Input</label>
+                                </div>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" id="include-checkbox">
+                                    <label for="include-checkbox">Checkbox</label>
+                                </div>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" id="include-radio">
+                                    <label for="include-radio">Radio Buttons</label>
+                                </div>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" id="include-select">
+                                    <label for="include-select">Select Dropdown</label>
+                                </div>
+                                <button class="btn btn-primary" onclick="buildForm()">Build Form</button>
+                            </div>
+                            <div class="demo-output" id="form-demo-output">
+                                <form>
+                                    <label for="demo-text">Text Input:</label><br>
+                                    <input type="text" id="demo-text" name="demo-text"><br><br>
+                                    <input type="submit" value="Submit">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header" onclick="toggleTopic(this)">
+                    <h3>Form Validation</h3>
+                    <span>+</span>
+                </div>
+                <div class="topic-content">
+                    <p>HTML5 introduced form validation features that allow you to perform input validation directly in the browser without JavaScript:</p>
+                    <ul>
+                        <li><code>required</code>: Specifies that an input field must be filled out</li>
+                        <li><code>minlength</code> and <code>maxlength</code>: Specifies the minimum and maximum length of textual data</li>
+                        <li><code>min</code> and <code>max</code>: Specifies the minimum and maximum values for numerical input fields</li>
+                        <li><code>pattern</code>: Specifies a regular expression that defines a pattern the entered data needs to follow</li>
+                    </ul>
+                    <div class="code-example">
+                            <pre>&lt;form&gt;
+  &lt;label for="username"&gt;Username:&lt;/label&gt;
+  &lt;input type="text" id="username" name="username" required minlength="3" maxlength="15"&gt;&lt;br&gt;
+
+  &lt;label for="email"&gt;Email:&lt;/label&gt;
+  &lt;input type="email" id="email" name="email" required&gt;&lt;br&gt;
+
+  &lt;label for="age"&gt;Age:&lt;/label&gt;
+  &lt;input type="number" id="age" name="age" min="18" max="120"&gt;&lt;br&gt;
+
+  &lt;label for="zipcode"&gt;Zip Code:&lt;/label&gt;
+  &lt;input type="text" id="zipcode" name="zipcode" pattern="[0-9]{5}" title="Five digit zip code"&gt;&lt;br&gt;
+
+  &lt;input type="submit" value="Submit"&gt;
+&lt;/form&gt;</pre>
+                    </div>
+                    <div class="tag-example">
+                        <form onsubmit="event.preventDefault(); validateForm();">
+                            <label for="username">Username:</label><br>
+                            <input type="text" id="username" name="username" required minlength="3" maxlength="15"><br>
+
+                            <label for="email">Email:</label><br>
+                            <input type="email" id="email" name="email" required><br>
+
+                            <label for="age">Age:</label><br>
+                            <input type="number" id="age" name="age" min="18" max="120"><br>
+
+                            <label for="zipcode">Zip Code:</label><br>
+                            <input type="text" id="zipcode" name="zipcode" pattern="[0-9]{5}" title="Five digit zip code"><br><br>
+
+                            <input type="submit" value="Submit">
+                        </form>
+                        <div id="validation-feedback" class="feedback"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="semantic" class="content-section">
+        <h2 class="section-title">Semantic HTML</h2>
+        <div class="topics-container">
+            <div class="topic">
+                <div class="topic-header" onclick="toggleTopic(this)">
+                    <h3>What is Semantic HTML?</h3>
+                    <span>+</span>
+                </div>
+                <div class="topic-content">
+                    <p>Semantic HTML elements clearly describe their meaning to both the browser and the developer. Examples of semantic elements: <code>&lt;form&gt;</code>, <code>&lt;table&gt;</code>, and <code>&lt;article&gt;</code> - clearly define their content.</p>
+                    <p>Non-semantic elements like <code>&lt;div&gt;</code> and <code>&lt;span&gt;</code> tell nothing about their content.</p>
+                    <h4>Benefits of Semantic HTML:</h4>
+                    <ul>
+                        <li>Better accessibility for screen readers and assistive technologies</li>
+                        <li>Better SEO performance</li>
+                        <li>More consistent and cleaner code</li>
+                        <li>Easier to maintain and understand</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header" onclick="toggleTopic(this)">
+                    <h3>Semantic Elements</h3>
+                    <span>+</span>
+                </div>
+                <div class="topic-content">
+                    <p>HTML5 introduced many semantic elements to better structure your web pages:</p>
+                    <table class="attribute-table">
+                        <tr>
+                            <th>Element</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>&lt;header&gt;</td>
+                            <td>Defines a header for a document or a section</td>
+                        </tr>
+                        <tr>
+                            <td>&lt;nav&gt;</td>
+                            <td>Defines a set of navigation links</td>
+                        </tr>
+                        <tr>
+                            <td>&lt;main&gt;</td>
+                            <td>Specifies the main content of a document</td>
+                        </tr>
+                        <tr>
+                            <td>&lt;section&gt;</td>
+                            <td>Defines a section in a document</td>
+                        </tr>
+                        <tr>
+                            <td>&lt;article&gt;</td>
+                            <td>Defines an independent, self-contained content</td>
+                        </tr>
+                        <tr>
+                            <td>&lt;aside&gt;</td>
+                            <td>Defines content aside from the main content (like a sidebar)</td>
+                        </tr>
+                        <tr>
+                            <td>&lt;footer&gt;</td>
+                            <td>Defines
+                            <td>Defines a footer for a document or a section</td>
+                        </tr>
+                        <tr>
+                            <td>&lt;figure&gt;</td>
+                            <td>Specifies self-contained content, like illustrations, diagrams, photos, etc.</td>
+                        </tr>
+                        <tr>
+                            <td>&lt;figcaption&gt;</td>
+                            <td>Defines a caption for a &lt;figure&gt; element</td>
+                        </tr>
+                        <tr>
+                            <td>&lt;time&gt;</td>
+                            <td>Defines a date/time</td>
+                        </tr>
+                        <tr>
+                            <td>&lt;mark&gt;</td>
+                            <td>Defines marked/highlighted text</td>
+                        </tr>
+                        <tr>
+                            <td>&lt;details&gt;</td>
+                            <td>Defines additional details that the user can view or hide</td>
+                        </tr>
+                        <tr>
+                            <td>&lt;summary&gt;</td>
+                            <td>Defines a visible heading for the &lt;details&gt; element</td>
+                        </tr>
+                    </table>
+                    <div class="code-example">
+                            <pre>&lt;article&gt;
+  &lt;header&gt;
+    &lt;h2&gt;Article Title&lt;/h2&gt;
+    &lt;p&gt;Posted on &lt;time datetime="2023-05-20"&gt;May 20, 2023&lt;/time&gt; by Author&lt;/p&gt;
+  &lt;/header&gt;
+
+  &lt;p&gt;Article content goes here...&lt;/p&gt;
+
+  &lt;figure&gt;
+    &lt;img src="example-image.jpg" alt="Example Image"&gt;
+    &lt;figcaption&gt;Fig.1 - Example caption for the image&lt;/figcaption&gt;
+  &lt;/figure&gt;
+
+  &lt;footer&gt;
+    &lt;p&gt;Article footer information&lt;/p&gt;
+  &lt;/footer&gt;
+&lt;/article&gt;</pre>
+                    </div>
+                    <div class="tag-example">
+                        <article style="border: 1px solid #ddd; padding: 15px; border-radius: 5px;">
+                            <header>
+                                <h2>Article Title</h2>
+                                <p>Posted on <time datetime="2023-05-20">May 20, 2023</time> by Author</p>
+                            </header>
+
+                            <p>Article content goes here...</p>
+
+                            <figure style="text-align: center; margin: 15px 0; padding: 10px; background: #f8f9fa;">
+                                <div style="width: 100px; height: 100px; background: #e2e8f0; margin: 0 auto; display: flex; align-items: center; justify-content: center;">Image</div>
+                                <figcaption>Fig.1 - Example caption for the image</figcaption>
+                            </figure>
+
+                            <footer style="border-top: 1px solid #ddd; margin-top: 15px; padding-top: 10px;">
+                                <p>Article footer information</p>
+                            </footer>
+                        </article>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header" onclick="toggleTopic(this)">
+                    <h3>Semantic vs. Non-Semantic</h3>
+                    <span>+</span>
+                </div>
+                <div class="topic-content">
+                    <p>Let's compare semantic and non-semantic approaches to building the same page structure:</p>
+                    <h4>Non-Semantic Approach</h4>
+                    <div class="code-example">
+                            <pre>&lt;div class="header"&gt;
+  &lt;h1&gt;Website Title&lt;/h1&gt;
+  &lt;div class="nav"&gt;
+    &lt;div class="nav-item"&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/div&gt;
+    &lt;div class="nav-item"&gt;&lt;a href="#"&gt;About&lt;/a&gt;&lt;/div&gt;
+    &lt;div class="nav-item"&gt;&lt;a href="#"&gt;Contact&lt;/a&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="main-content"&gt;
+  &lt;div class="article"&gt;
+    &lt;div class="article-title"&gt;Article Title&lt;/div&gt;
+    &lt;div class="article-content"&gt;Content goes here...&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class="sidebar"&gt;
+    &lt;div class="sidebar-item"&gt;Sidebar item 1&lt;/div&gt;
+    &lt;div class="sidebar-item"&gt;Sidebar item 2&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="footer"&gt;
+  &lt;div class="copyright"&gt;Copyright 2023&lt;/div&gt;
+&lt;/div&gt;</pre>
+                    </div>
+
+                    <h4>Semantic Approach</h4>
+                    <div class="code-example">
+                            <pre>&lt;header&gt;
+  &lt;h1&gt;Website Title&lt;/h1&gt;
+  &lt;nav&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="#"&gt;About&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="#"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;main&gt;
+  &lt;article&gt;
+    &lt;h2&gt;Article Title&lt;/h2&gt;
+    &lt;p&gt;Content goes here...&lt;/p&gt;
+  &lt;/article&gt;
+
+  &lt;aside&gt;
+    &lt;section&gt;Sidebar item 1&lt;/section&gt;
+    &lt;section&gt;Sidebar item 2&lt;/section&gt;
+  &lt;/aside&gt;
+&lt;/main&gt;
+
+&lt;footer&gt;
+  &lt;p&gt;Copyright 2023&lt;/p&gt;
+&lt;/footer&gt;</pre>
+                    </div>
+                    <p>The semantic approach clearly defines the structure and purpose of each section, making it more accessible and easier to understand.</p>
+                    <div class="interactive-demo">
+                        <h4>Try Converting Non-Semantic to Semantic HTML</h4>
+                        <div class="demo-container">
+                            <div class="demo-input">
+                                    <textarea id="semantic-demo-input" rows="8">&lt;div class="header"&gt;
+  &lt;h1&gt;My Website&lt;/h1&gt;
+&lt;/div&gt;
+&lt;div class="content"&gt;
+  &lt;div class="article"&gt;Article content here&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="footer"&gt;Copyright 2023&lt;/div&gt;</textarea>
+                                <button class="btn btn-primary" onclick="convertToSemantic()">Convert to Semantic</button>
+                            </div>
+                            <div class="demo-output" id="semantic-demo-output">
+                                    <pre>&lt;header&gt;
+  &lt;h1&gt;My Website&lt;/h1&gt;
+&lt;/header&gt;
+&lt;main&gt;
+  &lt;article&gt;Article content here&lt;/article&gt;
+&lt;/main&gt;
+&lt;footer&gt;Copyright 2023&lt;/footer&gt;</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="advanced" class="content-section">
+        <h2 class="section-title">Advanced HTML Features</h2>
+        <div class="topics-container">
+            <div class="topic">
+                <div class="topic-header" onclick="toggleTopic(this)">
+                    <h3>HTML5 APIs and New Features</h3>
+                    <span>+</span>
+                </div>
+                <div class="topic-content">
+                    <p>HTML5 introduced several new APIs and features that enhance the capabilities of web applications:</p>
+                    <h4>Canvas</h4>
+                    <p>The <code>&lt;canvas&gt;</code> element is used to draw graphics, on the fly, via JavaScript:</p>
+                    <div class="code-example">
+                            <pre>&lt;canvas id="myCanvas" width="200" height="100" style="border:1px solid #000;"&gt;
+Your browser does not support the canvas element.
+&lt;/canvas&gt;
+
+&lt;script&gt;
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+ctx.fillStyle = "#FF0000";
+ctx.fillRect(0, 0, 150, 75);
+&lt;/script&gt;</pre>
+                    </div>
+                    <div class="tag-example">
+                        <canvas id="myCanvas" width="200" height="100" style="border:1px solid #000;">
+                            Your browser does not support the canvas element.
+                        </canvas>
+                    </div>
+
+                    <h4>Audio and Video</h4>
+                    <p>HTML5 provides built-in support for audio and video content:</p>
+                    <div class="code-example">
+                            <pre>&lt;video width="320" height="240" controls&gt;
+  &lt;source src="movie.mp4" type="video/mp4"&gt;
+  &lt;source src="movie.ogg" type="video/ogg"&gt;
+  Your browser does not support the video tag.
+&lt;/video&gt;
+
+&lt;audio controls&gt;
+  &lt;source src="audio.mp3" type="audio/mpeg"&gt;
+  &lt;source src="audio.ogg" type="audio/ogg"&gt;
+  Your browser does not support the audio element.
+&lt;/audio&gt;</pre>
+                    </div>
+
+                    <h4>Web Storage</h4>
+                    <p>HTML5 provides two objects for storing data on the client:</p>
+                    <ul>
+                        <li><code>localStorage</code> - stores data with no expiration date</li>
+                        <li><code>sessionStorage</code> - stores data for one session</li>
+                    </ul>
+                    <div class="code-example">
+                            <pre>// Store data
+localStorage.setItem("name", "John Doe");
+
+// Retrieve data
+document.getElementById("result").innerHTML = localStorage.getItem("name");</pre>
+                    </div>
+
+                    <h4>Geolocation</h4>
+                    <p>The Geolocation API allows the user to provide their location to web applications:</p>
+                    <div class="code-example">
+                            <pre>if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(showPosition);
+} else {
+  console.log("Geolocation is not supported by this browser.");
+}
+
+function showPosition(position) {
+  console.log("Latitude: " + position.coords.latitude +
+  " Longitude: " + position.coords.longitude);
+}</pre>
+                    </div>
+
+                    <h4>Drag and Drop</h4>
+                    <p>HTML5 drag and drop is an easy way to move elements around on a page:</p>
+                    <div class="code-example">
+                            <pre>&lt;div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"&gt;&lt;/div&gt;
+&lt;img id="drag1" src="img_logo.gif" draggable="true" ondragstart="drag(event)"&gt;
+
+&lt;script&gt;
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  ev.target.appendChild(document.getElementById(data));
+}
+&lt;/script&gt;</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header" onclick="toggleTopic(this)">
+                    <h3>Responsive Web Design</h3>
+                    <span>+</span>
+                </div>
+                <div class="topic-content">
+                    <p>Responsive web design makes web pages look good on all devices. A responsive web design will automatically adjust for different screen sizes and viewports.</p>
+                    <h4>Viewport Meta Tag</h4>
+                    <p>The viewport meta tag gives the browser instructions on how to control the page's dimensions and scaling:</p>
+                    <div class="code-example">
+                        <pre>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</pre>
+                    </div>
+                    <p>This tag ensures that your web page scales correctly across different devices.</p>
+
+                    <h4>Responsive Images</h4>
+                    <p>The <code>srcset</code> attribute allows you to define different images for different screen sizes:</p>
+                    <div class="code-example">
+                            <pre>&lt;img srcset="img-small.jpg 500w,
+             img-medium.jpg 1000w,
+             img-large.jpg 1500w"
+     sizes="(max-width: 600px) 480px,
+            (max-width: 900px) 800px,
+            1200px"
+     src="img-medium.jpg"
+     alt="Responsive Image"&gt;</pre>
+                    </div>
+                    <p>The <code>picture</code> element provides more flexibility for specifying image resources:</p>
+                    <div class="code-example">
+                            <pre>&lt;picture&gt;
+  &lt;source media="(min-width: 650px)" srcset="img_pink_flowers.jpg"&gt;
+  &lt;source media="(min-width: 465px)" srcset="img_white_flower.jpg"&gt;
+  &lt;img src="img_orange_flowers.jpg" alt="Flowers"&gt;
+&lt;/picture&gt;</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-header" onclick="toggleTopic(this)">
+                    <h3>Meta Tags and SEO</h3>
+                    <span>+</span>
+                </div>
+                <div class="topic-content">
+                    <p>Meta tags provide information about the HTML document that isn't displayed on the page but is used by browsers and search engines.</p>
+                    <h4>Essential Meta Tags</h4>
+                    <div class="code-example">
+                            <pre>&lt;!-- Character encoding --&gt;
+&lt;meta charset="UTF-8"&gt;
+
+&lt;!-- Viewport for responsive design --&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+
+&lt;!-- Description (important for SEO) --&gt;
+&lt;meta name="description" content="A description of the page content"&gt;
+
+&lt;!-- Keywords (less important for modern SEO but still used) --&gt;
+&lt;meta name="keywords" content="HTML, CSS, JavaScript, Tutorial"&gt;
+
+&lt;!-- Author information --&gt;
+&lt;meta name="author" content="John Doe"&gt;</pre>
+                    </div>
+
+                    <h4>Social Media Meta Tags</h4>
+                    <p>These tags control how your page appears when shared on social media platforms:</p>
+                    <div class="code-example">
+                            <pre>&lt;!-- Open Graph tags for Facebook, LinkedIn, etc. --&gt;
+&lt;meta property="og:title" content="Your Page Title"&gt;
+&lt;meta property="og:description" content="Description of your page"&gt;
+&lt;meta property="og:image" content="https://example.com/image.jpg"&gt;
+&lt;meta property="og:url" content="https://example.com/page"&gt;
+&lt;meta property="og:type" content="website"&gt;
+
+&lt;!-- Twitter Card tags --&gt;
+&lt;meta name="twitter:card" content="summary_large_image"&gt;
+&lt;meta name="twitter:title" content="Your Page Title"&gt;
+&lt;meta name="twitter:description" content="Description of your page"&gt;
+&lt;meta name="twitter:image" content="https://example.com/image.jpg"&gt;</pre>
+                    </div>
+
+                    <h4>SEO Best Practices</h4>
+                    <ul>
+                        <li>Use semantic HTML elements</li>
+                        <li>Ensure proper heading structure (h1, h2, etc.)</li>
+                        <li>Use descriptive alt text for images</li>
+                        <li>Include a descriptive title tag</li>
+                        <li>Write a compelling meta description</li>
+                        <li>Use structured data (Schema.org)</li>
+                        <li>Create descriptive URLs</li>
+                        <li>Optimize page load speed</li>
+                        <li>Ensure mobile responsiveness</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="quiz" class="content-section">
+        <h2 class="section-title">Test Your Knowledge</h2>
+        <div class="quiz-container">
+            <div id="quiz"></div>
+            <div id="quiz-results" style="display: none;">
+                <h3>Quiz Results</h3>
+                <p>You got <span id="correct-answers">0</span> out of <span id="total-questions">0</span> questions correct!</p>
+                <button class="btn btn-primary" onclick="resetQuiz()">Try Again</button>
+            </div>
+        </div>
+    </section>
+</main>
+
+<div class="theme-switch" id="theme-toggle">
+    <span>🌙</span>
+</div>
+
+<footer>
+    <p>&copy; 2023 HTML Master - Learn HTML from Basic to Advanced</p>
+    <p>A comprehensive, self-contained HTML learning resource</p>
+</footer>
+
+<script>
+    // Topic Toggle
+    function toggleTopic(element) {
+        const content = element.nextElementSibling;
+        content.classList.toggle('active');
+
+        const plusMinus = element.querySelector('span');
+        plusMinus.textContent = content.classList.contains('active') ? '-' : '+';
+
+        // Update progress if topic is opened for the first time
+        if (content.classList.contains('active') && !content.dataset.viewed) {
+            content.dataset.viewed = true;
+            updateProgress();
+        }
+    }
+
+    // Demo Runner
+    function runDemo(inputId, outputId) {
+        const input = document.getElementById(inputId).value;
+        const output = document.getElementById(outputId);
+        output.innerHTML = input;
+    }
+
+    // Alt Text Updater
+    function updateAltText() {
+        const newAltText = document.getElementById('alt-text-input').value;
+        document.getElementById('alt-demo-img').alt = newAltText;
+        document.getElementById('current-alt-text').textContent = newAltText;
+    }
+
+    // Form Builder
+    function buildForm() {
+        let formHtml = '<form>';
+
+        if (document.getElementById('include-text').checked) {
+            formHtml += `
+                    <label for="demo-text">Text Input:</label><br>
+                    <input type="text" id="demo-text" name="demo-text"><br><br>
+                `;
+        }
+
+        if (document.getElementById('include-email').checked) {
+            formHtml += `
+                    <label for="demo-email">Email Input:</label><br>
+                    <input type="email" id="demo-email" name="demo-email"><br><br>
+                `;
+        }
+
+        if (document.getElementById('include-password').checked) {
+            formHtml += `
+                    <label for="demo-password">Password Input:</label><br>
+                    <input type="password" id="demo-password" name="demo-password"><br><br>
+                `;
+        }
+
+        if (document.getElementById('include-checkbox').checked) {
+            formHtml += `
+                    <input type="checkbox" id="demo-checkbox" name="demo-checkbox">
+                    <label for="demo-checkbox">Check me out</label><br><br>
+                `;
+        }
+
+        if (document.getElementById('include-radio').checked) {
+            formHtml += `
+                    <input type="radio" id="option1" name="options" value="option1">
+                    <label for="option1">Option 1</label><br>
+                    <input type="radio" id="option2" name="options" value="option2">
+                    <label for="option2">Option 2</label><br><br>
+                `;
+        }
+
+        if (document.getElementById('include-select').checked) {
+            formHtml += `
+                    <label for="demo-select">Select an option:</label><br>
+                    <select id="demo-select" name="demo-select">
+                        <option value="option1">Option 1</option>
+                        <option value="option2">Option 2</option>
+                        <option value="option3">Option 3</option>
+                    </select><br><br>
+                `;
+        }
+
+        formHtml += '<input type="submit" value="Submit">';
+        formHtml += '</form>';
+
+        document.getElementById('form-demo-output').innerHTML = formHtml;
+    }
+
+    // Form Validation
+    function validateForm() {
+        const username = document.getElementById('username').value;
+        const email = document.getElementById('email').value;
+        const age = document.getElementById('age').value;
+        const zipcode = document.getElementById('zipcode').value;
+
+        const feedback = document.getElementById('validation-feedback');
+
+        // Simple validation
+        if (username.length < 3 || username.length > 15) {
+            feedback.textContent = 'Username must be between 3 and 15 characters.';
+            feedback.className = 'feedback error';
+            return;
+        }
+
+        if (email === '') {
+            feedback.textContent = 'Email is required.';
+            feedback.className = 'feedback error';
+            return;
+        }
+
+        if (age && (age < 18 || age > 120)) {
+            feedback.textContent = 'Age must be between 18 and 120.';
+            feedback.className = 'feedback error';
+            return;
+        }
+
+        if (zipcode && !/^\d{5}$/.test(zipcode)) {
+            feedback.textContent = 'Zip code must be 5 digits.';
+            feedback.className = 'feedback error';
+            return;
+        }
+
+        feedback.textContent = 'Form submitted successfully!';
+        feedback.className = 'feedback success';
+    }
+
+    // Convert to Semantic HTML
+    function convertToSemantic() {
+        const input = document.getElementById('semantic-demo-input').value;
+        const output = document.getElementById('semantic-demo-output');
+
+        // Simple conversion (for demo purposes)
+        let converted = input
+            .replace(/<div class="header">/g, '<header>')
+            .replace(/<\/div><!-- header -->/g, '</header>')
+            .replace(/<div class="content">/g, '<main>')
+            .replace(/<\/div><!-- content -->/g, '</main>')
+            .replace(/<div class="article">/g, '<article>')
+            .replace(/<\/div><!-- article -->/g, '</article>')
+            .replace(/<div class="footer">/g, '<footer>')
+            .replace(/<\/div><!-- footer -->/g, '</footer>');
+
+        // Replace remaining closing divs with appropriate semantic tags
+        converted = converted
+            .replace(/<\/div>\s*<header/g, '</header><header')
+            .replace(/<\/div>\s*<main/g, '</main><main')
+            .replace(/<\/div>\s*<article/g, '</article><article')
+            .replace(/<\/div>\s*<footer/g, '</footer><footer')
+            .replace(/<\/div>/g, function(match, offset, string) {
+                const openingTag = string.substring(0, offset).match(/<(header|main|article|footer)[^>]*>/g);
+                if (openingTag && openingTag.length > 0) {
+                    const tag = openingTag[openingTag.length - 1].match(/<([a-z]+)/)[1];
+                    return '</' + tag + '>';
+                }
+                return match;
+            });
+
+        output.innerHTML = converted;
+    }
+
+    // Progress Tracking
+    function updateProgress() {
+        const totalTopics = document.querySelectorAll('.topic').length;
+        const viewedTopics = document.querySelectorAll('.topic-content[data-viewed="true"]').length;
+        const percentage = Math.round((viewedTopics / totalTopics) * 100);
+
+        document.getElementById('progress-bar').style.width = percentage + '%';
+        document.querySelector('.progress-label').textContent = percentage + '% Complete';
+
+        // Save progress to localStorage
+        localStorage.setItem('htmlMasterProgress', percentage);
+    }
+
+    // Load progress from localStorage
+    function loadProgress() {
+        const savedProgress = localStorage.getItem('htmlMasterProgress');
+        if (savedProgress) {
+            document.getElementById('progress-bar').style.width = savedProgress + '%';
+            document.querySelector('.progress-label').textContent = savedProgress + '% Complete';
+        }
+    }
+
+    // Dark Mode Toggle
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark-theme');
+        const isDarkMode = document.body.classList.contains('dark-theme');
+        localStorage.setItem('darkMode', isDarkMode);
+
+        // Update toggle icon
+        document.querySelector('.theme-switch span').textContent = isDarkMode ? '☀️' : '🌙';
+    }
+
+    // Load dark mode preference from localStorage
+    function loadDarkModePreference() {
+        const isDarkMode = localStorage.getItem('darkMode') === 'true';
+        if (isDarkMode) {
+            document.body.classList.add('dark-theme');
+            document.querySelector('.theme-switch span').textContent = '☀️';
+        }
+    }
+
+    // Quiz functionality
+    const quizQuestions = [
+        {
+            question: "What does HTML stand for?",
+            options: [
+                "Hyper Text Markup Language",
+                "High Tech Modern Language",
+                "Hyper Transfer Markup Language",
+                "Home Tool Markup Language"
+            ],
+            correct: 0
+        },
+        {
+            question: "Which tag is used to define an unordered list?",
+            options: [
+                "<ol>",
+                "<li>",
+                "<ul>",
+                "<list>"
+            ],
+            correct: 2
+        },
+        {
+            question: "Which attribute is used to specify a unique identifier for an HTML element?",
+            options: [
+                "class",
+                "id",
+                "name",
+                "unique"
+            ],
+            correct: 1
+        },
+        {
+            question: "Which HTML5 element is used to specify a footer for a document or section?",
+            options: [
+                "<bottom>",
+                "<section>",
+                "<footer>",
+                "<end>"
+            ],
+            correct: 2
+        },
+        {
+            question: "Which input type is used for email addresses?",
+            options: [
+                "text",
+                "mail",
+                "address",
+                "email"
+            ],
+            correct: 3
+        }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+
+    function loadQuiz() {
+        const quizContainer = document.getElementById('quiz');
+
+        if (currentQuestion < quizQuestions.length) {
+            const question = quizQuestions[currentQuestion];
+
+            let quizHTML = `
+                    <div class="quiz-question">
+                        <h3>Question ${currentQuestion + 1}/${quizQuestions.length}</h3>
+                        <p>${question.question}</p>
+                        <div class="options">
+                `;
+
+            question.options.forEach((option, index) => {
+                quizHTML += `
+                        <div class="option" onclick="checkAnswer(${index})">
+                            ${option}
+                        </div>
+                    `;
+            });
+
+            quizHTML += `
+                        </div>
+                    </div>
+                `;
+
+            quizContainer.innerHTML = quizHTML;
+        } else {
+            showResults();
+        }
+    }
+
+    function checkAnswer(selectedOption) {
+        const correctOption = quizQuestions[currentQuestion].correct;
+        const options = document.querySelectorAll('.option');
+
+        // Disable all options
+        options.forEach(option => {
+            option.style.pointerEvents = 'none';
+        });
+
+        if (selectedOption === correctOption) {
+            options[selectedOption].classList.add('correct');
+            score++;
+        } else {
+            options[selectedOption].classList.add('incorrect');
+            options[correctOption].classList.add('correct');
+        }
+
+        // Move to next question after a delay
+        setTimeout(() => {
+            currentQuestion++;
+            loadQuiz();
+        }, 1500);
+    }
+
+    function showResults() {
+        document.getElementById('quiz').style.display = 'none';
+        document.getElementById('quiz-results').style.display = 'block';
+        document.getElementById('correct-answers').textContent = score;
+        document.getElementById('total-questions').textContent = quizQuestions.length;
+    }
+
+    function resetQuiz() {
+        currentQuestion = 0;
+        score = 0;
+        document.getElementById('quiz').style.display = 'block';
+        document.getElementById('quiz-results').style.display = 'none';
+        loadQuiz();
+    }
+
+    // Initialize canvas
+    function initCanvas() {
+        var canvas = document.getElementById("myCanvas");
+        if (canvas && canvas.getContext) {
+            var ctx = canvas.getContext("2d");
+            ctx.fillStyle = "#FF0000";
+            ctx.fillRect(0, 0, 150, 75);
+        }
+    }
+
+    // Document ready function
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize canvas
+        initCanvas();
+
+        // Load dark mode preference
+        loadDarkModePreference();
+
+        // Load progress
+        loadProgress();
+
+        // Load quiz
+        loadQuiz();
+
+        // Event listeners
+        document.getElementById('theme-toggle').addEventListener('click', toggleDarkMode);
+
+        // Initialize accordion (collapsed state)
+        document.querySelectorAll('.topic-header').forEach(header => {
+            const content = header.nextElementSibling;
+            content.style.display = 'none';
+        });
+    });
+
+    // Toggle topic function
+    function toggleTopic(element) {
+        const content = element.nextElementSibling;
+        const plusMinus = element.querySelector('span');
+
+        if (content.style.display === 'none') {
+            content.style.display = 'block';
+            plusMinus.textContent = '-';
+
+            // Update progress if topic is opened for the first time
+            if (!content.dataset.viewed) {
+                content.dataset.viewed = true;
+                updateProgress();
+            }
+        } else {
+            content.style.display = 'none';
+            plusMinus.textContent = '+';
+        }
+    }
+</script>
+</body>
+</html>
